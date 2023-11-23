@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <title>Cronograma Reparaciones</title>
+    <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.css">
+    <style>
+        .taskItem.completed {
+            background-color: #d4edda;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 class="text-center">TechFix Solutions</h1>
+    </header>
+    <main class="container mt-4">
+        <article>
+            <div class="row mb-3">
+                <div class="col-md-3">
+                    <label for="taskInput" class="form-label">Cliente</label>
+                    <input type="text" class="form-control" id="taskInput" required placeholder="Escribe el nombre del Cliente">
+                </div>
+                <div class="col-md-3">
+                    <label for="date" class="form-label" >Día Ingreso</label>
+                    <input type="date" class="form-control" id="date" placeholder="Día Ingreso">
+                </div>
+                <div class="col-md-3">
+                    <label for="time" class="form-label">Hora Ingreso</label>
+                    <input type="time" class="form-control" id="time" required>
+                </div>
+                <div class="col-md-3">
+                    <label for="desc" class="form-label">Descripción</label>
+                    <input type="text" class="form-control" id="desc" placeholder="Añade una breve Descripción" required>
+                </div>
+            </div>
+            <button id="addTaskBtn" class="btn btn-primary"><i class="fa-regular fa-square-plus"></i> Agregar</button>
+            <ul id="taskList" class="list-group mt-3"></ul>
+        </article>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const taskInput = document.getElementById('taskInput');
+            const addTaskBtn = document.getElementById('addTaskBtn');
+            const taskList = document.getElementById('taskList');
+            const dateInput = document.getElementById('date');
+            const timeInput = document.getElementById('time');
+            const descInput = document.getElementById('desc');
+
+            loadTasks();
+
+            addTaskBtn.addEventListener('click', function () {
+                const taskText = taskInput.value.trim();
+                const taskDate = dateInput.value || getCurrentDate();
+                const taskTime = timeInput.value;
+                const taskDesc = descInput.value;
+
+                if (taskText !== '') {
+                    addTask(taskText, taskDate, taskTime, taskDesc);
+                    saveTasksToLocalStorage();
+                    taskInput.value = '';
+                    dateInput.value = '';
+                    timeInput.value = '';
+                    descInput.value = '';
+                }
+            });
+
+            function addTask(taskText, taskDate, taskTime, taskDesc) {
+                const li = document.createElement('li');
+                li.className = 'list-group-item taskItem';
+
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.className = 'form-check-input';
+                checkbox.addEventListener('change', function () {
+                    li.classList.toggle('completed');
+                });
+
+                const span = document.createElement('span');
+                span.textContent = `${taskText} - ${taskDate} ${taskTime} ${taskDesc}`;
+
+                const deleteBtn = document.createElement('button');
+                deleteBtn.className = 'btn btn-danger btn-sm float-end';
+                deleteBtn.innerHTML = '<i class="fa-solid fa-trash"></i> Eliminar';
+                deleteBtn.addEventListener('click', function () {
+                    li.remove();
+                    saveTasksToLocalStorage();
+                });
+
+                li.appendChild(checkbox);
+                li.appendChild(span);
+                li.appendChild(deleteBtn);
+
+                taskList.appendChild(li);
+            }
+
+            function saveTasksToLocalStorage() {
+                const tasks = [];
+                const taskItems = document.querySelectorAll('.list-group-item');
+
+                taskItems.forEach(function (taskItem) {
+                    tasks.push(taskItem.querySelector('span').textContent);
+                });
+
+                localStorage.setItem('tasks', JSON.stringify(tasks));
+            }
+
+            function loadTasks() {
+                const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
+                tasks.forEach(function (taskText) {
+                    const [text, date, time, desc] = taskText.split(' - ');
+                    addTask(text, date, time, desc);
+                });
+            }
+
+            function getCurrentDate() {
+                const now = new Date();
+                const year = now.getFullYear();
+                const month = (now.getMonth() + 1).toString().padStart(2, '0');
+                const day = now.getDate().toString().padStart(2, '0');
+                return `${year}-${month}-${day}`;
+            }
+        });
+    </script>
+</body>
+
+</html>
