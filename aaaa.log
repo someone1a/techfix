@@ -1,0 +1,10 @@
+cronograma.html:143 Live reload enabled.
+cronograma.html:102 Uncaught ReferenceError: Cannot access 'addTask' before initialization
+    at cronograma.html:102:21
+    at Array.forEach (<anonymous>)
+    at loadTasks (cronograma.html:100:23)
+    at HTMLDocument.<anonymous> (cronograma.html:52:13)
+favicon.ico:1 
+        
+        
+       Failed to load resource: the server responded with a status of 404 (Not Found)
