@@ -19,15 +19,91 @@
         <nav class="txright">
             <a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a>
             <a href="#aboutUs"><i class="fa-solid fa-circle-info"></i> Quienes Somos</a>
-            <a href=""><i class="fa-solid fa-money-bill"></i> Precios</a>
+            <a href="#prices"><i class="fa-solid fa-money-bill"></i> Precios</a>
             <a href="contacto.html"><i class="fa-solid fa-phone-volume"></i> Solicitar Servicios</a>
         </nav>
     </header>
     <main>
-        <section>
-            
+        <section class="container">
+            <article id="aboutUs">
+                <h1 class="txcenter">¿Quienes somos?</h1>
+                <p>Somos TechFix Solutions, un servicio de reparación de computadoras tanto portátiles como de
+                    escritorio.
+                    Nuestro objetivo es brindar soluciones tecnológicas confiables y de calidad a nuestros clientes.
+                    Contamos con un equipo de expertos en reparación y mantenimiento de equipos informáticos, quienes
+                    están
+                    comprometidos en ofrecer un servicio eficiente y personalizado. Nos destacamos por nuestra atención
+                    al
+                    detalle, rapidez en los tiempos de respuesta y precios competitivos. Confía en nosotros para
+                    resolver
+                    cualquier problema que puedas tener con tu computadora. ¡Estamos aquí para ayudarte!
+                </p>
+            </article>
+            <article id="prices">
+                <h1 class="txcenter">Precios</h1>
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Servicio</th>
+                            <th scope="col">Precio</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Reparación de computadoras de escritorio</th>
+                            <td>$ 20.000</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Reparación de computadoras portátiles</th>
+                            <td>$ 25.000</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Mantenimiento de computadoras de escritorio</th>
+                            <td>$ 15.000</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Mantenimiento de computadoras portátiles</th>
+                            <td>$ 20.000</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Instalación de sistema operativo</th>
+                            <td>$ 10.000</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Instalación de programas</th>
+                            <td>$ 5.000</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Instalación de antivirus</th>
+                            <td>$ 5.000</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Instalación de drivers</th>
+                            <td>$ 5.000</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Recuperación de datos</th>
+                            <td>$ 10.000</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Limpieza de virus</th>
+                            <td>$ 10.000</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Limpieza de polvo</th>
+                            <td>$ 5.000</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Formateo de computadoras de escritorio</th>
+                            <td>$ 10.000</td>
+            </article>
         </section>
     </main>
+    <script>
+        const now = new Date();
+        const year = now.getFullYear();
+        document.getElementById('copyright').textContent = `Copyright © ${year} TechFix Solutions. All rights reserved.`;
+    </script>
 </body>
 
 </html>

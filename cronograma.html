@@ -115,7 +115,16 @@
         const day = now.getDate().toString().padStart(2, '0');
         return `${year}-${month}-${day}`;
     }
-});
+})
+    </script>
+    <footer>
+        <p class="text-center" id="copyright">Copyright © 2022 TechFix Solutions. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const now = new Date();
+        const year = now.getFullYear();
+        document.getElementById('copyright').textContent = `Copyright © ${year} TechFix Solutions. All rights reserved.`;
     </script>
 </body>
 
